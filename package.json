@@ -23,7 +23,8 @@
     "react-native": "0.68.2",
     "react-native-uuid": "^2.0.1",
     "react-native-web": "0.17.7",
-    "tambola": "^3.0.3"
+    "tambola": "^3.0.3",
+    "expo-updates": "~0.13.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
