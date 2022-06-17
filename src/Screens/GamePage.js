@@ -738,7 +738,7 @@ const GamePage = ({ route, navigation }) => {
       clearInterval(intervalId.current);
     }
     setTimeout(() => {
-      navigation.navigate("GameOver", {
+      navigation.replace("GameOver", {
         GameID: GameID,
         Jaldi5: cloudGameData.Jaldi5,
         FirstRow: cloudGameData.FirstRow,
