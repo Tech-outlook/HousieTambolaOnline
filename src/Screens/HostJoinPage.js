@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import { Video } from "expo-av";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
 import { AdMobBanner } from "expo-ads-admob";
 import { GoogleAdIDS } from "./GoogleAdIDS";
 

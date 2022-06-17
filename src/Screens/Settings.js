@@ -15,6 +15,9 @@ import { getFirestore, doc, updateDoc } from "firebase/firestore";
 import app from "../../Firebase";
 const db = getFirestore(app);
 
+import { AdMobBanner } from "expo-ads-admob";
+import { GoogleAdIDS } from "./GoogleAdIDS";
+
 const Settings = ({ route }) => {
   let { GameID } = route.params;
   const gameRef = doc(db, "HousieTambolaGame", GameID);
@@ -173,6 +176,19 @@ const Settings = ({ route }) => {
           </View>
         </View>
       </ScrollView>
+      <View
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          marginBottom: 5,
+        }}
+      >
+        <AdMobBanner
+          bannerSize="fullBanner"
+          adUnitID={GoogleAdIDS}
+          servePersonalizedAds={false}
+        />
+      </View>
     </View>
   );
 };

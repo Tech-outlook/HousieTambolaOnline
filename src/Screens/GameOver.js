@@ -2,10 +2,18 @@ import React from "react";
 import { View, Text, StyleSheet, Image, Dimensions } from "react-native";
 import { BlurView } from "expo-blur";
 import { Video } from "expo-av";
+import { AdMobBanner } from "expo-ads-admob";
+import { GoogleAdIDS } from "./GoogleAdIDS";
 
 const GamePage = ({ route }) => {
-  let { Jaldi5, FirstRow, SecondRow, ThirdRow, FullHousie, GameID } =
-    route.params;
+  //let { Jaldi5, FirstRow, SecondRow, ThirdRow, FullHousie, GameID } = route.params;
+
+  const GameID = "ABCDEFGH";
+  const Jaldi5 = [true, "Phanindra"];
+  const FirstRow = [true, "Phanindra"];
+  const SecondRow = [true, "Phanindra"];
+  const ThirdRow = [true, "Phanindra"];
+  const FullHousie = [true, "Phanindra"];
 
   return (
     <>
@@ -113,6 +121,19 @@ const GamePage = ({ route }) => {
               </View>
             </View>
           }
+          <View
+            style={{
+              width: "80%",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <AdMobBanner
+              bannerSize="fullBanner"
+              adUnitID={GoogleAdIDS}
+              servePersonalizedAds={false}
+            />
+          </View>
         </BlurView>
       </View>
     </>

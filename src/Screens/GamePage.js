@@ -15,6 +15,8 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import Numbersboard from "./NumberBoard";
 import Players from "./Players";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { AdMobBanner } from "expo-ads-admob";
+import { GoogleAdIDS } from "./GoogleAdIDS";
 
 import {
   getFirestore,
@@ -1085,6 +1087,22 @@ const GamePage = ({ route, navigation }) => {
                       Generate Ticket
                     </Text>
                   </TouchableOpacity>
+                </View>
+              )}
+            {cloudGameData.RandomNumbers !== undefined &&
+              cloudGameData.RandomNumbers.length === 0 && (
+                <View
+                  style={{
+                    justifyContent: "center",
+                    alignItems: "center",
+                    marginBottom: 5,
+                  }}
+                >
+                  <AdMobBanner
+                    bannerSize="banner"
+                    adUnitID={GoogleAdIDS}
+                    servePersonalizedAds={false}
+                  />
                 </View>
               )}
           </ScrollView>
