@@ -19,11 +19,14 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.phani.housietambolaonline",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.phani.housietambolaonline"
+      "config": {
+        "googleMobileAdsAppId": "ca-app-pub-4831000562300117~9300362606"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"

@@ -10,6 +10,9 @@ import {
 import { Video } from "expo-av";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import { AdMobBanner } from "expo-ads-admob";
+import { GoogleAdIDS } from "./GoogleAdIDS";
+
 import {
   getFirestore,
   setDoc,
@@ -141,7 +144,7 @@ const HostJoin = ({ navigation }) => {
               color: "#fff",
               fontWeight: "bold",
               fontSize: Math.round(Dimensions.get("window").width / 30),
-              paddingTop: "13%",
+              paddingTop: "10%",
             }}
           >{`Welcome  ${userName.toUpperCase()}`}</Text>
         )}
@@ -164,9 +167,42 @@ const HostJoin = ({ navigation }) => {
             <Text style={styles.JoinTxt}>Join</Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.SignoutBtn} onPress={() => SignOut()}>
-          <Text style={styles.SignoutTxt}>Signout</Text>
-        </TouchableOpacity>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+            width: "100%",
+            marginVertical: 5,
+          }}
+        >
+          <View
+            style={{
+              width: "80%",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <AdMobBanner
+              bannerSize="fullBanner"
+              adUnitID={GoogleAdIDS}
+              servePersonalizedAds={false}
+            />
+          </View>
+          <View
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <TouchableOpacity
+              style={styles.SignoutBtn}
+              onPress={() => SignOut()}
+            >
+              <Text style={styles.SignoutTxt}>Signout</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
     </>
   );
@@ -220,14 +256,11 @@ const styles = StyleSheet.create({
     width: Math.round(Dimensions.get("window").width / 5),
     justifyContent: "center",
     alignItems: "center",
-    alignSelf: "flex-end",
     borderRadius: 20,
     borderWidth: 1,
     borderColor: "#fff",
     borderTopRightRadius: 50,
     borderBottomLeftRadius: 50,
-    marginRight: 25,
-    marginBottom: 20,
   },
   SignoutTxt: {
     color: "#fff",

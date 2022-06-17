@@ -11,6 +11,8 @@ import {
 import { Video } from "expo-av";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import uuid from "react-native-uuid";
+import { AdMobBanner } from "expo-ads-admob";
+import { GoogleAdIDS } from "../Screens/GoogleAdIDS";
 
 const LoginPage = ({ navigation }) => {
   const [name, onChangeName] = useState("");
@@ -36,10 +38,12 @@ const LoginPage = ({ navigation }) => {
         isLooping={true}
         resizeMode="cover"
       />
-      <ScrollView
-        contentContainerStyle={{
+      <View
+        style={{
           alignItems: "center",
           justifyContent: "center",
+          height: "80%",
+          width: "100%",
         }}
       >
         <View>
@@ -59,7 +63,21 @@ const LoginPage = ({ navigation }) => {
         >
           <Text style={styles.SocialText}>Let's Go</Text>
         </TouchableOpacity>
-      </ScrollView>
+      </View>
+      <View
+        style={{
+          width: "100%",
+          justifyContent: "center",
+          alignItems: "center",
+          alignSelf: "flex-end",
+        }}
+      >
+        <AdMobBanner
+          bannerSize="fullBanner"
+          adUnitID={GoogleAdIDS}
+          servePersonalizedAds={false}
+        />
+      </View>
     </View>
   );
 };
@@ -67,7 +85,6 @@ const LoginPage = ({ navigation }) => {
 const styles = StyleSheet.create({
   LoginPageContainer: {
     flex: 1,
-    flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     padding: 5,
