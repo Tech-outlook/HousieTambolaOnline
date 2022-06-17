@@ -6,14 +6,8 @@ import { AdMobBanner } from "expo-ads-admob";
 import { GoogleAdIDS } from "./GoogleAdIDS";
 
 const GamePage = ({ route }) => {
-  //let { Jaldi5, FirstRow, SecondRow, ThirdRow, FullHousie, GameID } = route.params;
-
-  const GameID = "ABCDEFGH";
-  const Jaldi5 = [true, "Phanindra"];
-  const FirstRow = [true, "Phanindra"];
-  const SecondRow = [true, "Phanindra"];
-  const ThirdRow = [true, "Phanindra"];
-  const FullHousie = [true, "Phanindra"];
+  let { Jaldi5, FirstRow, SecondRow, ThirdRow, FullHousie, GameID } =
+    route.params;
 
   return (
     <>
