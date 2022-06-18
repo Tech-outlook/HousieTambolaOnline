@@ -25,7 +25,7 @@ const LoginPage = ({ navigation }) => {
       await AsyncStorage.setItem("AutomaticNumberCalling", "4");
       await AsyncStorage.setItem("UserUUID", uuid.v4());
       onChangeName("");
-      await navigation.navigate("HostJoinPage");
+      await navigation.replace("HostJoinPage");
     }
   };
 

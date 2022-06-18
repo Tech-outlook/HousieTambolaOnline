@@ -137,17 +137,23 @@ const HostJoin = ({ navigation }) => {
           justifyContent: "space-between",
         }}
       >
-        {userName && (
-          <Text
-            style={{
-              color: "#fff",
-              fontWeight: "bold",
-              fontSize: Math.round(Dimensions.get("window").width / 30),
-              paddingTop: "10%",
-            }}
-          >{`Welcome  ${userName.toUpperCase()}`}</Text>
-        )}
-        <View style={{ justifyContent: "center", alignItems: "center" }}>
+        <View
+          style={{
+            justifyContent: "flex-end",
+            alignItems: "center",
+            height: "80%",
+          }}
+        >
+          {userName && (
+            <Text
+              style={{
+                color: "#fff",
+                fontWeight: "bold",
+                fontSize: Math.round(Dimensions.get("window").width / 35),
+                paddingBottom: "2%",
+              }}
+            >{`Welcome  ${userName.toUpperCase()}`}</Text>
+          )}
           <TouchableOpacity
             style={styles.HostBtn}
             onPress={() => HostingGame()}
@@ -172,7 +178,7 @@ const HostJoin = ({ navigation }) => {
             justifyContent: "space-evenly",
             alignItems: "center",
             width: "100%",
-            marginVertical: 5,
+            marginBottom: 10,
           }}
         >
           <View
@@ -260,6 +266,7 @@ const styles = StyleSheet.create({
     borderColor: "#fff",
     borderTopRightRadius: 50,
     borderBottomLeftRadius: 50,
+    marginRight: 20,
   },
   SignoutTxt: {
     color: "#fff",
