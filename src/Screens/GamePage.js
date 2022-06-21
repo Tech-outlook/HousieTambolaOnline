@@ -10,6 +10,7 @@ import {
   StyleSheet,
   Share,
 } from "react-native";
+import * as Speech from "expo-speech";
 import tambola from "tambola";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Numbersboard from "./NumberBoard";
@@ -26,6 +27,7 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 import app from "../../Firebase";
+import { async } from "@firebase/util";
 const db = getFirestore(app);
 
 const GamePage = ({ route, navigation }) => {
@@ -750,6 +752,38 @@ const GamePage = ({ route, navigation }) => {
   }
   //-----------------------------------------------------------------------------------------//
 
+  //---------------------------------------------------------------------//
+
+  useEffect(() => {
+    const TextToSpeech = async () => {
+      if (
+        cloudGameData.RandomNumbers !== undefined &&
+        cloudGameData.RandomNumbers.length !== 0 &&
+        volume === true
+      ) {
+        const TextToSpeechNumber = await cloudGameData.RandomNumbers[
+          cloudGameData.RandomNumbers.length - 1
+        ].toString();
+        await Speech.speak(TextToSpeechNumber);
+      }
+    };
+    TextToSpeech();
+  }, [cloudGameData.RandomNumbers]);
+
+  //---------------------------------------------------------------------//
+
+  //------------------------------------------------------------------------------------------//
+  const [volume, setVolume] = useState(true);
+
+  const VolumeControl = () => {
+    if (volume) {
+      setVolume(false);
+    } else {
+      setVolume(true);
+    }
+  };
+  //------------------------------------------------------------------------------------------//
+
   return (
     <View
       style={{
@@ -786,7 +820,7 @@ const GamePage = ({ route, navigation }) => {
             style={{
               flexDirection: "row",
               alignItems: "center",
-              justifyContent: "center",
+              justifyContent: "space-evenly",
               backgroundColor: "#ecdfc8",
               borderWidth: 1,
               borderColor: "#ff1e56",
@@ -802,7 +836,7 @@ const GamePage = ({ route, navigation }) => {
                 flexDirection: "row",
                 justifyContent: "flex-start",
                 alignItems: "center",
-                width: "90%",
+                width: "70%",
                 height: "80%",
                 paddingHorizontal: 10,
                 borderRadius: 20,
@@ -813,7 +847,7 @@ const GamePage = ({ route, navigation }) => {
                 <Text
                   style={{
                     fontWeight: "bold",
-                    color: "#ff1e56",
+                    color: "#2E7D32",
                     fontSize: Math.round(Dimensions.get("window").height / 32),
                     textAlign: "center",
                   }}
@@ -832,10 +866,32 @@ const GamePage = ({ route, navigation }) => {
               )}
               {cloudGameData.RandomNumbers != undefined &&
                 cloudGameData.RandomNumbers.length !== 0 && (
-                  <Text style={[styles.Drawnumber, { marginLeft: 30 }]}>
+                  <Text
+                    style={[
+                      styles.Drawnumber,
+                      { marginLeft: 30, backgroundColor: "#2E7D32" },
+                    ]}
+                  >
                     {cloudGameData.RandomNumbers.slice(-1)}
                   </Text>
                 )}
+            </View>
+            <View>
+              <TouchableOpacity onPress={() => VolumeControl()}>
+                {volume === true ? (
+                  <Ionicons
+                    name="volume-high"
+                    color="#2E7D32"
+                    size={Math.round(Dimensions.get("window").width / 30)}
+                  />
+                ) : (
+                  <Ionicons
+                    name="volume-mute"
+                    color="#ff1e56"
+                    size={Math.round(Dimensions.get("window").width / 30)}
+                  />
+                )}
+              </TouchableOpacity>
             </View>
           </View>
           {cloudGameData.RandomNumbers != undefined &&

@@ -25,7 +25,8 @@
     "react-native-uuid": "^2.0.1",
     "react-native-web": "0.17.7",
     "tambola": "^3.0.3",
-    "expo-ads-admob": "~13.0.0"
+    "expo-ads-admob": "~13.0.0",
+    "expo-speech": "~10.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
