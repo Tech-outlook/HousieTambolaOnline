@@ -24,7 +24,7 @@ const Players = (props) => {
               borderWidth: 1,
               borderColor: "#EF5350",
               borderRadius: 18,
-              backgroundColor: "#ecdfc8",
+              backgroundColor: "#F5F5DD",
               width: "90%",
               paddingVertical: 5,
             }}

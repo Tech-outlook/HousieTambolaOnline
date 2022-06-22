@@ -14,6 +14,7 @@ import * as Speech from "expo-speech";
 import tambola from "tambola";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Numbersboard from "./NumberBoard";
+import GameChat from "./GameChat";
 import Players from "./Players";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AdMobBanner } from "expo-ads-admob";
@@ -27,7 +28,6 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 import app from "../../Firebase";
-import { async } from "@firebase/util";
 const db = getFirestore(app);
 
 const GamePage = ({ route, navigation }) => {
@@ -800,11 +800,13 @@ const GamePage = ({ route, navigation }) => {
           height: "100%",
           width: "17%",
           alignItems: "center",
+          justifyContent: "space-between",
         }}
       >
         {cloudGameData.Players != undefined && (
           <Players PlayersData={cloudGameData.Players} />
         )}
+        {cloudGameData.Players != undefined && <GameChat GameID={GameID} />}
       </View>
       {
         <View
@@ -819,7 +821,7 @@ const GamePage = ({ route, navigation }) => {
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "space-evenly",
-              backgroundColor: "#ecdfc8",
+              backgroundColor: "#F5F5DD",
               borderWidth: 1,
               borderColor: "#ff1e56",
               borderBottomLeftRadius: 30,
@@ -936,7 +938,7 @@ const GamePage = ({ route, navigation }) => {
                     flexDirection: "row",
                     justifyContent: "center",
                     padding: 5,
-                    backgroundColor: "#ecdfc8",
+                    backgroundColor: "#F5F5DD",
                     borderRadius: 10,
                     marginVertical: 4,
                   }}
