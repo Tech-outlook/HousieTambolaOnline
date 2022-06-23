@@ -31,8 +31,26 @@ const GameChat = (props) => {
     "Take Rest 🛌",
     "It's Show Time 🔥",
     "Get Ready 🥳",
+    "Why Late? 🙄",
+    "One Number Only 👀",
   ];
-  const PreloadedEmoji = ["🥳", "🤪", "😝", "🤭", "😎", "🤨", "😴", "😭", "😡"];
+  const PreloadedEmoji = [
+    "🥳",
+    "🤪",
+    "😝",
+    "🤭",
+    "😎",
+    "🥴",
+    "🤨",
+    "🧐",
+    "😴",
+    "😭",
+    "😡",
+    "😷",
+    "😇",
+    "👻",
+    "🚀",
+  ];
 
   const GameChatUpdate = async (Message) => {
     await updateDoc(gameRef, {
@@ -207,6 +225,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
     marginTop: 4,
     fontSize: 16,
+    textAlign: "center",
   },
   PreloadedEmoji: {
     fontSize: 30,
