@@ -813,7 +813,6 @@ const GamePage = ({ route, navigation }) => {
           style={{
             height: "100%",
             width: "60%",
-            paddingTop: 5,
           }}
         >
           <View
@@ -827,7 +826,7 @@ const GamePage = ({ route, navigation }) => {
               borderBottomLeftRadius: 30,
               borderTopRightRadius: 30,
               borderRadius: 10,
-              marginTop: 5,
+              marginTop: 4,
               height: "14%",
             }}
           >
@@ -924,6 +923,35 @@ const GamePage = ({ route, navigation }) => {
                 <Ionicons name="share-social-sharp" color="#000" size={18} />
               </TouchableOpacity>
             )}
+          {cloudGameData.GameChat !== undefined && (
+            <View
+              style={{
+                flexDirection: "row",
+                backgroundColor: "#fff",
+                justifyContent: "center",
+                alignItems: "center",
+                alignSelf: "center",
+                marginTop: 2,
+                borderRadius: 5,
+                paddingVertical: 5,
+                paddingHorizontal: 10,
+              }}
+            >
+              <Ionicons name="chatbox-ellipses" color="#000" size={16} />
+              <Text
+                style={{
+                  color: "#000",
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  marginHorizontal: 10,
+                  textAlignVertical: "center",
+                  letterSpacing: 0.2,
+                }}
+              >
+                {cloudGameData.GameChat[0]}
+              </Text>
+            </View>
+          )}
           <ScrollView
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{

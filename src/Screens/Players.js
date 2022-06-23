@@ -20,7 +20,7 @@ const Players = (props) => {
             style={{
               justifyContent: "center",
               alignItems: "center",
-              marginTop: 10,
+              marginTop: 4,
               borderWidth: 1,
               borderColor: "#EF5350",
               borderRadius: 18,

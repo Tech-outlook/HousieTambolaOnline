@@ -39,6 +39,7 @@ const GameChat = (props) => {
       GameChat: arrayUnion(Message),
     });
     await setModalVisible(!modalVisible);
+    onChangeMessage("");
   };
 
   return (
@@ -99,29 +100,30 @@ const GameChat = (props) => {
             {
               <View
                 style={{
-                  width: "100%",
+                  width: "98%",
                   flexDirection: "row",
                   justifyContent: "space-evenly",
                   alignItems: "center",
                   paddingVertical: 5,
+                  borderWidth: 1,
+                  marginVertical: 5,
+                  borderRadius: 10,
                 }}
               >
                 <TextInput
                   style={{
-                    borderWidth: 1,
                     width: "88%",
                     padding: 8,
-                    borderRadius: 10,
                     fontWeight: "500",
-                    fontSize: 20,
+                    fontSize: 16,
                   }}
                   placeholder="Type Here..."
                   placeholderTextColor={"#000"}
                   onChangeText={onChangeMessage}
                   value={message}
                 />
-                <Pressable>
-                  <FontAwesome name="send" size={25} color="#000" />
+                <Pressable onPress={() => GameChatUpdate(message)}>
+                  <FontAwesome name="send" size={28} color="#000" />
                 </Pressable>
               </View>
             }
