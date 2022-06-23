@@ -943,12 +943,20 @@ const GamePage = ({ route, navigation }) => {
                   color: "#000",
                   textAlign: "center",
                   fontWeight: "bold",
-                  marginHorizontal: 10,
+                  marginHorizontal: 1,
                   textAlignVertical: "center",
-                  letterSpacing: 0.2,
+                  letterSpacing: 0.3,
                 }}
               >
-                {cloudGameData.GameChat[0]}
+                {`${
+                  cloudGameData.GameChat[
+                    cloudGameData.GameChat.length - 1
+                  ].split(",")[0]
+                } --   ${
+                  cloudGameData.GameChat[
+                    cloudGameData.GameChat.length - 1
+                  ].split(",")[1]
+                }`}
               </Text>
             </View>
           )}

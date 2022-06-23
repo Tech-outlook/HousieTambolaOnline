@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Modal,
   StyleSheet,
@@ -8,6 +8,7 @@ import {
   Dimensions,
   TextInput,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { AdMobBanner } from "expo-ads-admob";
 import { GoogleAdIDS } from "./GoogleAdIDS";
@@ -52,9 +53,21 @@ const GameChat = (props) => {
     "🚀",
   ];
 
+  //-----------------------------------------------------------------//
+  const [userName, setUserName] = useState();
+
+  useEffect(() => {
+    const GettingUserInfo = async () => {
+      const UserInfo = await AsyncStorage.getItem("UserName");
+      await setUserName(UserInfo);
+    };
+    GettingUserInfo();
+  }, []);
+  //-----------------------------------------------------------------//
+
   const GameChatUpdate = async (Message) => {
     await updateDoc(gameRef, {
-      GameChat: arrayUnion(Message),
+      GameChat: arrayUnion(`${userName}, ${Message}`),
     });
     await setModalVisible(!modalVisible);
     onChangeMessage("");

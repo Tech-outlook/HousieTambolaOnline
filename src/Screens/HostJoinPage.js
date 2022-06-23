@@ -66,7 +66,7 @@ const HostJoin = ({ navigation }) => {
         SecondRow: [false],
         ThirdRow: [false],
         FullHousie: [false],
-        GameChat: ["Hey There!"],
+        GameChat: [`Housie Online, Hey There!`],
         PostTime: Timestamp.fromDate(new Date()),
         IsGameStarted: false,
       }).then(() => {
