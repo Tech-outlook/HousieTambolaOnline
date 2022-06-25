@@ -7,6 +7,9 @@ import {
   View,
   Dimensions,
 } from "react-native";
+import { AdMobBanner } from "expo-ads-admob";
+import { GoogleAdIDS } from "./GoogleAdIDS";
+
 const Numbersboard = (props) => {
   let { data } = props;
   const [modalVisible, setModalVisible] = useState(false);
@@ -166,12 +169,25 @@ const Numbersboard = (props) => {
               ))}
             </View>
           </View>
-          <Pressable
-            style={styles.PopUpCloseBtn}
-            onPress={() => setModalVisible(!modalVisible)}
+          <View
+            style={{
+              height: "95%",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
           >
-            <Text style={styles.PopUpCloseBtnTxt}>Close</Text>
-          </Pressable>
+            <AdMobBanner
+              bannerSize="mediumRectangle"
+              adUnitID={GoogleAdIDS}
+              servePersonalizedAds={false}
+            />
+            <Pressable
+              style={styles.PopUpCloseBtn}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <Text style={styles.PopUpCloseBtnTxt}>Close</Text>
+            </Pressable>
+          </View>
         </View>
       </Modal>
       <Pressable onPress={() => setModalVisible(true)}>
@@ -201,12 +217,10 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
     backgroundColor: "#fff",
     borderRadius: 10,
-    height: "12%",
-    width: "20%",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 10,
-    marginRight: 20,
+    width: Math.round(Dimensions.get("window").width / 5),
+    height: Math.round(Dimensions.get("window").width / 15),
   },
   PopUpCloseBtnTxt: {
     color: "#EF5350",
@@ -217,20 +231,17 @@ const styles = StyleSheet.create({
   centeredView: {
     flexDirection: "row",
     backgroundColor: "#EF5350",
-    justifyContent: "space-evenly",
+    justifyContent: "space-around",
     alignItems: "center",
     height: "100%",
   },
   modalView: {
-    borderRadius: 20,
     height: "100%",
     justifyContent: "center",
     alignItems: "center",
   },
   NumBoard: {
     flexDirection: "row",
-    width: "90%",
-    minHeight: "10.5%",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -241,12 +252,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "white",
     fontWeight: "bold",
-    marginHorizontal: 10,
+    marginHorizontal: 5,
+    marginVertical: 3,
     borderWidth: 0.5,
     borderColor: "#fff",
     borderRadius: 100,
     fontSize: Math.round(Dimensions.get("window").width / 50),
-    marginTop: 6,
   },
   PressedNumBoardText: {
     backgroundColor: "#fff",
@@ -257,8 +268,8 @@ const styles = StyleSheet.create({
     color: "#EF5350",
     fontWeight: "bold",
     borderRadius: 100,
-    marginHorizontal: 10,
-    marginTop: 6,
+    marginHorizontal: 5,
+    marginVertical: 3,
     fontSize: Math.round(Dimensions.get("window").width / 50),
   },
 });
