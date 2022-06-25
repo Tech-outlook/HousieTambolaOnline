@@ -771,7 +771,7 @@ const GamePage = ({ route, navigation }) => {
   //---------------------------------------------------------------------//
 
   //------------------------------------------------------------------------------------------//
-  const [volume, setVolume] = useState(true);
+  const [volume, setVolume] = useState(false);
 
   const VolumeControl = () => {
     if (volume) {
