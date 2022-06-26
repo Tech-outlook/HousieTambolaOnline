@@ -46,8 +46,6 @@ const GamePage = ({ route, navigation }) => {
   const indexOfDrawnNumber = useRef(0);
   const intervalId = useRef(0);
 
-  const [cloudGameData, setCloudGameData] = useState({});
-
   const [playPauseBtn, setPlayPauseBtn] = useState({
     playpausebtn: false,
     playpauseIcon: "play",
@@ -56,6 +54,8 @@ const GamePage = ({ route, navigation }) => {
   });
 
   //----------------------------------------------------------------//
+  const [cloudGameData, setCloudGameData] = useState({});
+
   useEffect(() => {
     const GameRealTimeData = onSnapshot(
       doc(db, "HousieTambolaGame", GameID),
