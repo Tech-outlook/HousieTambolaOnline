@@ -18,7 +18,7 @@ const db = getFirestore(app);
 
 const GameChat = (props) => {
   const { GameID } = props;
-  const gameRef = doc(db, "HousieTambolaGame", GameID);
+  const gameRef = doc(db, "HousieTambolaGameChat", GameID);
 
   const [modalVisible, setModalVisible] = useState(false);
   const [message, onChangeMessage] = useState("");

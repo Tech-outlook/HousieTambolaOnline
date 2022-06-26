@@ -66,10 +66,14 @@ const HostJoin = ({ navigation }) => {
         SecondRow: [false],
         ThirdRow: [false],
         FullHousie: [false],
-        GameChat: [`Housie Online, Hey There!`],
-        PostTime: Timestamp.fromDate(new Date()),
         IsGameStarted: false,
-      }).then(() => {
+      });
+      const GameChat = await setDoc(
+        doc(db, "HousieTambolaGameChat", CustomGameID),
+        {
+          GameChat: [`Housie Online, Hey There!`],
+        }
+      ).then(() => {
         navigation.navigate("GamePage", {
           GameID: CustomGameID,
           IsHost: true,
@@ -87,10 +91,7 @@ const HostJoin = ({ navigation }) => {
       try {
         const GameRef = await getDoc(doc(db, "HousieTambolaGame", gameID));
         const GameData = await GameRef.data();
-        if (
-          GameData.RandomNumbers.length === 0 &&
-          GameData.IsGameStarted === false
-        ) {
+        if (GameData.RandomNumbers.length === 0) {
           const gameRef = await doc(db, "HousieTambolaGame", gameID);
           await updateDoc(gameRef, {
             Players: arrayUnion(JSON.stringify([userUUID, userName, 0])),

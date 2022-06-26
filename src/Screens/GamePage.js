@@ -66,6 +66,19 @@ const GamePage = ({ route, navigation }) => {
   }, []);
   //----------------------------------------------------------------//
 
+  //----------------------------------------------------------------//
+  const [cloudGameChatData, setCloudGameChatData] = useState({});
+
+  useEffect(() => {
+    const GameRealTimeData = onSnapshot(
+      doc(db, "HousieTambolaGameChat", GameID),
+      (doc) => {
+        setCloudGameChatData(doc.data());
+      }
+    );
+  }, []);
+  //----------------------------------------------------------------//
+
   //-------------------------------------------------------------------------//
   const [randomNumbers1to90, setRandomNumbers1to90] = useState([]);
   const [userName, setUserName] = useState();
@@ -923,7 +936,7 @@ const GamePage = ({ route, navigation }) => {
                 <Ionicons name="share-social-sharp" color="#000" size={18} />
               </TouchableOpacity>
             )}
-          {cloudGameData.GameChat !== undefined && (
+          {cloudGameChatData.GameChat !== undefined && (
             <View
               style={{
                 flexDirection: "row",
@@ -949,12 +962,12 @@ const GamePage = ({ route, navigation }) => {
                 }}
               >
                 {`${
-                  cloudGameData.GameChat[
-                    cloudGameData.GameChat.length - 1
+                  cloudGameChatData.GameChat[
+                    cloudGameChatData.GameChat.length - 1
                   ].split(",")[0]
                 } --   ${
-                  cloudGameData.GameChat[
-                    cloudGameData.GameChat.length - 1
+                  cloudGameChatData.GameChat[
+                    cloudGameChatData.GameChat.length - 1
                   ].split(",")[1]
                 }`}
               </Text>
