@@ -107,7 +107,14 @@ const GameChat = (props) => {
                   paddingVertical: 5,
                 }}
               >
-                <>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
                   {PreLoadedMessage.map((message, index) => (
                     <Text
                       key={index}
@@ -117,8 +124,15 @@ const GameChat = (props) => {
                       {message}
                     </Text>
                   ))}
-                </>
-                <>
+                </View>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
                   {PreloadedEmoji.map((Emoji, index) => (
                     <Text
                       key={index}
@@ -128,7 +142,7 @@ const GameChat = (props) => {
                       {Emoji}
                     </Text>
                   ))}
-                </>
+                </View>
               </View>
             }
 
@@ -236,12 +250,11 @@ const styles = StyleSheet.create({
     color: "#000",
     fontWeight: "500",
     borderWidth: 1,
-    paddingHorizontal: 6,
-    paddingVertical: 5,
+    padding: 5,
     borderRadius: 20,
-    marginHorizontal: 5,
-    marginTop: 4,
-    fontSize: 16,
+    marginHorizontal: 2,
+    marginTop: 5,
+    fontSize: Math.round(Dimensions.get("window").height / 28),
     textAlign: "center",
   },
   PreloadedEmoji: {
