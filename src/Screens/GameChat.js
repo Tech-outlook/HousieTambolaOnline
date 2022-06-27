@@ -25,15 +25,16 @@ const GameChat = (props) => {
 
   const PreLoadedMessage = [
     "Hey...!😀",
-    "Paise Vasool...!💵",
+    "Paise vasool...!💵",
     "Congratulations🤝",
-    "Better Luck Next Time👎",
-    "Aapna Time Aagaya😎",
-    "Take Rest 🛌",
-    "It's Show Time 🔥",
-    "Get Ready 🥳",
-    "Why Late? 🙄",
-    "One Number Only 👀",
+    "Better luck next time👎",
+    "Aapna time aagaya😎",
+    "Take rest 🛌",
+    "It's show time 🔥",
+    "Get ready 🥳",
+    "Why late? 🙄",
+    "One number only 👀",
+    "Shall we start❓",
   ];
   const PreloadedEmoji = [
     "🥳",
@@ -44,6 +45,7 @@ const GameChat = (props) => {
     "🥴",
     "🤨",
     "🧐",
+    "🤔",
     "😴",
     "😭",
     "😡",
@@ -51,6 +53,8 @@ const GameChat = (props) => {
     "😇",
     "👻",
     "🚀",
+    "👍",
+    "👎",
   ];
 
   //-----------------------------------------------------------------//
