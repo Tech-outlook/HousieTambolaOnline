@@ -10,6 +10,7 @@ import {
   StyleSheet,
   Share,
 } from "react-native";
+import { Video } from "expo-av";
 import * as Speech from "expo-speech";
 import tambola from "tambola";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -815,9 +816,12 @@ const GamePage = ({ route, navigation }) => {
         height: "100%",
       }}
     >
-      <Image
-        source={require("../../assets/GameBG.png")}
-        style={{ position: "absolute" }}
+      <Video
+        source={require("../../assets/MainBGVideo.mp4")}
+        style={styles.BackgroundVideo}
+        shouldPlay={true}
+        isLooping={true}
+        resizeMode="cover"
       />
       <View
         style={{
@@ -1556,6 +1560,14 @@ const GamePage = ({ route, navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  BackgroundVideo: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    opacity: 0.5,
+  },
   claimBtn: {
     justifyContent: "center",
     alignItems: "center",
