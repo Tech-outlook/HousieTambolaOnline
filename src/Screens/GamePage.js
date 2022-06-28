@@ -1391,7 +1391,7 @@ const GamePage = ({ route, navigation }) => {
                 },
               ]}
             >
-              First Row
+              First line
             </Text>
             {cloudGameData.FirstRow != undefined &&
               cloudGameData.FirstRow[0] === true && (
@@ -1436,7 +1436,7 @@ const GamePage = ({ route, navigation }) => {
                 },
               ]}
             >
-              Second Row
+              Second line
             </Text>
             {cloudGameData.SecondRow != undefined &&
               cloudGameData.SecondRow[0] === true && (
@@ -1481,7 +1481,7 @@ const GamePage = ({ route, navigation }) => {
                 },
               ]}
             >
-              Third Row
+              Third line
             </Text>
             {cloudGameData.ThirdRow != undefined &&
               cloudGameData.ThirdRow[0] === true && (
