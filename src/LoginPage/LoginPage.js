@@ -24,6 +24,7 @@ const LoginPage = ({ navigation }) => {
       await AsyncStorage.setItem("NumberOfTickets", "2");
       await AsyncStorage.setItem("AutomaticNumberCalling", "4");
       await AsyncStorage.setItem("UserUUID", uuid.v4());
+      await AsyncStorage.setItem("ChatControl", "true");
       onChangeName("");
       await navigation.replace("HostJoinPage");
     }

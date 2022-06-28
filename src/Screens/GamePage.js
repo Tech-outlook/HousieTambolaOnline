@@ -81,13 +81,19 @@ const GamePage = ({ route, navigation }) => {
   }, []);
 
   useEffect(() => {
-    setTimeout(() => {
-      setShowMessage(true);
-    }, 1000);
+    const ShowMessageFunction = () => {
+      if (chatControl === "true") {
+        setTimeout(() => {
+          setShowMessage(true);
+        }, 1000);
 
-    setTimeout(() => {
-      setShowMessage(false);
-    }, automaticNumberCalling * 1000);
+        setTimeout(() => {
+          setShowMessage(false);
+        }, automaticNumberCalling * 1000);
+      }
+    };
+
+    ShowMessageFunction();
   }, [cloudGameChatData]);
   //----------------------------------------------------------------//
 
@@ -96,6 +102,7 @@ const GamePage = ({ route, navigation }) => {
   const [userName, setUserName] = useState();
   const [automaticNumberCalling, setAutomaticNumberCalling] = useState();
   const [userUUID, setUserUUID] = useState();
+  const [chatControl, setChatControl] = useState();
 
   const GeneratingRandomNumbers1to90 = async () => {
     const RandomNumbers1to90Array = await tambola.getDrawSequence();
@@ -111,6 +118,9 @@ const GamePage = ({ route, navigation }) => {
 
     const UserUUID = await AsyncStorage.getItem("UserUUID");
     await setUserUUID(UserUUID);
+
+    const ChatControl = await AsyncStorage.getItem("ChatControl");
+    await setChatControl(ChatControl);
   };
 
   useEffect(() => {
@@ -834,7 +844,9 @@ const GamePage = ({ route, navigation }) => {
         {cloudGameData.Players != undefined && (
           <Players PlayersData={cloudGameData.Players} />
         )}
-        {cloudGameData.Players != undefined && <GameChat GameID={GameID} />}
+        {cloudGameData.Players != undefined && chatControl === "true" && (
+          <GameChat GameID={GameID} />
+        )}
       </View>
       {
         <View
@@ -951,51 +963,54 @@ const GamePage = ({ route, navigation }) => {
                 <Ionicons name="share-social-sharp" color="#000" size={18} />
               </TouchableOpacity>
             )}
-          <View
-            style={{
-              minHeight: 35,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            {cloudGameChatData.GameChat !== undefined && showMessage === true && (
-              <View
-                style={{
-                  flexDirection: "row",
-                  backgroundColor: "#fff",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  alignSelf: "center",
-                  marginTop: 2,
-                  borderRadius: 5,
-                  paddingVertical: 5,
-                  paddingHorizontal: 10,
-                }}
-              >
-                <Ionicons name="chatbox-ellipses" color="#000" size={16} />
-                <Text
-                  style={{
-                    color: "#000",
-                    textAlign: "center",
-                    fontWeight: "bold",
-                    marginHorizontal: 1,
-                    textAlignVertical: "center",
-                    letterSpacing: 0.3,
-                  }}
-                >
-                  {`${
-                    cloudGameChatData.GameChat[
-                      cloudGameChatData.GameChat.length - 1
-                    ].split(",")[0]
-                  } --   ${
-                    cloudGameChatData.GameChat[
-                      cloudGameChatData.GameChat.length - 1
-                    ].split(",")[1]
-                  }`}
-                </Text>
-              </View>
-            )}
-          </View>
+          {chatControl === "true" && (
+            <View
+              style={{
+                minHeight: 35,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {cloudGameChatData.GameChat !== undefined &&
+                showMessage === true && (
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      backgroundColor: "#fff",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      alignSelf: "center",
+                      marginTop: 2,
+                      borderRadius: 5,
+                      paddingVertical: 5,
+                      paddingHorizontal: 10,
+                    }}
+                  >
+                    <Ionicons name="chatbox-ellipses" color="#000" size={16} />
+                    <Text
+                      style={{
+                        color: "#000",
+                        textAlign: "center",
+                        fontWeight: "bold",
+                        marginHorizontal: 1,
+                        textAlignVertical: "center",
+                        letterSpacing: 0.3,
+                      }}
+                    >
+                      {`${
+                        cloudGameChatData.GameChat[
+                          cloudGameChatData.GameChat.length - 1
+                        ].split(",")[0]
+                      } --   ${
+                        cloudGameChatData.GameChat[
+                          cloudGameChatData.GameChat.length - 1
+                        ].split(",")[1]
+                      }`}
+                    </Text>
+                  </View>
+                )}
+            </View>
+          )}
           <ScrollView
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{

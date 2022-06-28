@@ -6,6 +6,7 @@ import {
   Text,
   TouchableOpacity,
   Dimensions,
+  Switch,
 } from "react-native";
 import { Video } from "expo-av";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -21,6 +22,34 @@ import { GoogleAdIDS } from "./GoogleAdIDS";
 const Settings = ({ route }) => {
   let { GameID } = route.params;
   const gameRef = doc(db, "HousieTambolaGame", GameID);
+  //-------------------------------------------------------------------------------------//
+  const [isEnabled, setIsEnabled] = useState(true);
+  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+
+  useEffect(() => {
+    const ToggleButton = async () => {
+      const ChatControl = await AsyncStorage.getItem("ChatControl");
+      if (ChatControl === "true") {
+        setIsEnabled(true);
+      } else if (ChatControl === "false") {
+        setIsEnabled(false);
+      }
+    };
+
+    ToggleButton();
+  }, []);
+
+  useEffect(() => {
+    const ChatControlFunction = async () => {
+      if (isEnabled) {
+        await AsyncStorage.setItem("ChatControl", "true");
+      } else if (!isEnabled) {
+        await AsyncStorage.setItem("ChatControl", "false");
+      }
+    };
+    ChatControlFunction();
+  }, [isEnabled]);
+  //-------------------------------------------------------------------------------------//
 
   //-------------------------------------------------------------------------------//
   const [automaticNumberCalling, setAutomaticNumberCalling] = useState();
@@ -173,6 +202,28 @@ const Settings = ({ route }) => {
                 size={Math.round(Dimensions.get("window").width / 20)}
               />
             </TouchableOpacity>
+          </View>
+        </View>
+
+        <View style={styles.SettingsItemView}>
+          <Text style={styles.SettingsItemText}>Enable Chat In Game</Text>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
+          >
+            <Switch
+              trackColor={{ false: "#767577", true: "green" }}
+              thumbColor={isEnabled ? "#fff" : "#f4f3f4"}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={toggleSwitch}
+              value={isEnabled}
+              style={{
+                transform: [{ scaleX: 1.3 }, { scaleY: 1.3 }],
+                marginRight: 30,
+              }}
+            />
           </View>
         </View>
       </ScrollView>

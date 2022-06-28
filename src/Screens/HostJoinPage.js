@@ -118,6 +118,7 @@ const HostJoin = ({ navigation }) => {
     await AsyncStorage.removeItem("NumberOfTickets");
     await AsyncStorage.removeItem("AutomaticNumberCalling");
     await AsyncStorage.removeItem("UserUUID");
+    await AsyncStorage.removeItem("ChatControl");
     navigation.navigate("LoginPage");
   };
   //------------------------------------------------------------------//
