@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "HousieTambolaOnline",
-    "slug": "HousieTambolaOnline",
+    "name": "Online Housie",
+    "slug": "onlinehousie",
     "version": "1.0.0",
     "orientation": "landscape",
     "icon": "./assets/icon.png",
@@ -19,7 +19,8 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.phani.housietambolaonline",
+      "package": "com.phani.onlinehousie",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
