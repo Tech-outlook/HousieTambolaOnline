@@ -1,1 +1,1 @@
-export const GoogleAdIDS = "ca-app-pub-3940256099942544/6300978111";
+export const GoogleAdIDS = "ca-app-pub-7279563491548364/3037839024";

@@ -7,13 +7,12 @@ import { initializeApp } from "firebase/app";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCsPf6rMhPvP9hhuIv2pv3DLc8NDB9qgbk",
-  authDomain: "housietambolaonline.firebaseapp.com",
-  projectId: "housietambolaonline",
-  storageBucket: "housietambolaonline.appspot.com",
-  messagingSenderId: "486507759331",
-  appId: "1:486507759331:web:0bfd1bff59ef6c8ac1e7d6",
-  measurementId: "G-0DEJQZV8DC",
+  apiKey: "AIzaSyDmwL-FP3qFZP5Hou5FijayJ4kBxVAFfr0",
+  authDomain: "online-housie-e3b45.firebaseapp.com",
+  projectId: "online-housie-e3b45",
+  storageBucket: "online-housie-e3b45.appspot.com",
+  messagingSenderId: "1061113816726",
+  appId: "1:1061113816726:web:83a240677ad7e50c6484b7",
 };
 
 // Initialize Firebase
