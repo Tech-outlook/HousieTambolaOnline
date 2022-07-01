@@ -19,7 +19,7 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.phani.onlinehousie",
+      "package": "com.phanindra.onlinehousie",
       "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
