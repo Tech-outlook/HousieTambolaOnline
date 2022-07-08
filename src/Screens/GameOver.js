@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, StyleSheet, Image, Dimensions } from "react-native";
 import { BlurView } from "expo-blur";
 import { Video } from "expo-av";
-import { AdMobBanner } from "expo-ads-admob";
+import { AdMobBanner, AdMobInterstitial } from "expo-ads-admob";
 import { GoogleAdIDS } from "./GoogleAdIDS";
 
 const GamePage = ({ route }) => {
   let { Jaldi5, FirstRow, SecondRow, ThirdRow, FullHousie, GameID } =
     route.params;
+
+  useEffect(() => {
+    const InterstitialAds = async () => {
+      await AdMobInterstitial.setAdUnitID(
+        "ca-app-pub-7279563491548364/2792545992"
+      );
+      await AdMobInterstitial.requestAdAsync({ servePersonalizedAds: true });
+      await AdMobInterstitial.showAdAsync();
+    };
+    InterstitialAds();
+  }, []);
 
   return (
     <>
