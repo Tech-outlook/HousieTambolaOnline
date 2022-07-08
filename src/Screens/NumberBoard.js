@@ -179,7 +179,7 @@ const Numbersboard = (props) => {
             <AdMobBanner
               bannerSize="mediumRectangle"
               adUnitID={GoogleAdIDS}
-              servePersonalizedAds={false}
+              servePersonalizedAds={true}
             />
             <Pressable
               style={styles.PopUpCloseBtn}

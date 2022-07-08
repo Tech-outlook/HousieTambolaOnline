@@ -76,7 +76,7 @@ const LoginPage = ({ navigation }) => {
         <AdMobBanner
           bannerSize="fullBanner"
           adUnitID={GoogleAdIDS}
-          servePersonalizedAds={false}
+          servePersonalizedAds={true}
         />
       </View>
     </View>

@@ -93,7 +93,7 @@ const GameChat = (props) => {
               <AdMobBanner
                 bannerSize="banner"
                 adUnitID={GoogleAdIDS}
-                servePersonalizedAds={false}
+                servePersonalizedAds={true}
               />
             </View>
             {

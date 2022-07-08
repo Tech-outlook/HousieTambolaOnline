@@ -1293,9 +1293,9 @@ const GamePage = ({ route, navigation }) => {
                   }}
                 >
                   <AdMobBanner
-                    bannerSize="banner"
+                    bannerSize="largeBanner"
                     adUnitID={GoogleAdIDS}
-                    servePersonalizedAds={false}
+                    servePersonalizedAds={true}
                   />
                 </View>
               )}
