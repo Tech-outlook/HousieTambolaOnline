@@ -948,8 +948,7 @@ const GamePage = ({ route, navigation }) => {
           </View>
           {cloudGameData.RandomNumbers != undefined &&
             cloudGameData.RandomNumbers.length === 0 && (
-              <TouchableOpacity
-                onPress={() => ShareGameID()}
+              <View
                 style={{
                   backgroundColor: "#fff",
                   justifyContent: "center",
@@ -957,46 +956,64 @@ const GamePage = ({ route, navigation }) => {
                   alignSelf: "center",
                   padding: 6,
                   borderRadius: 5,
+                  flexDirection: "row",
+                  paddingHorizontal: 10,
                 }}
               >
-                <View
-                  style={{
-                    flexDirection: "row",
-                    backgroundColor: "#fff",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    alignSelf: "center",
-                    marginTop: 2,
-                    borderRadius: 5,
-                    paddingVertical: 8,
-                    paddingHorizontal: 20,
-                    backgroundColor: "gold",
-                  }}
-                >
+                <TouchableOpacity onPress={() => ShareGameID()}>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      backgroundColor: "#fff",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      alignSelf: "center",
+                      marginTop: 2,
+                      borderRadius: 5,
+                      paddingVertical: 8,
+                      paddingHorizontal: 20,
+                      backgroundColor: "gold",
+                    }}
+                  >
+                    <Text
+                      style={{
+                        color: "#000",
+                        textAlign: "center",
+                        fontWeight: "bold",
+                        marginHorizontal: 10,
+                        letterSpacing: 1,
+                      }}
+                    >
+                      {`Room Code:-     ${GameID}`}
+                    </Text>
+                    <Ionicons
+                      name="share-social-sharp"
+                      color="#000"
+                      size={18}
+                    />
+                  </View>
                   <Text
                     style={{
                       color: "#000",
                       textAlign: "center",
                       fontWeight: "bold",
-                      marginHorizontal: 10,
-                      letterSpacing: 1,
+                      letterSpacing: 0.5,
                     }}
                   >
-                    {`Room Code:-     ${GameID}`}
+                    Tap Here To Share Room Code
                   </Text>
-                  <Ionicons name="share-social-sharp" color="#000" size={18} />
-                </View>
-                <Text
+                </TouchableOpacity>
+                <TouchableOpacity
                   style={{
-                    color: "#000",
-                    textAlign: "center",
-                    fontWeight: "bold",
-                    letterSpacing: 1,
+                    marginLeft: 20,
                   }}
+                  onPress={() =>
+                    navigation.navigate("Help", { GameID: GameID })
+                  }
                 >
-                  Tap Here To Share Room Code
-                </Text>
-              </TouchableOpacity>
+                  <Ionicons name="help-circle" color="#EF5350" size={40} />
+                </TouchableOpacity>
+              </View>
             )}
           {chatControl === "true" && (
             <View

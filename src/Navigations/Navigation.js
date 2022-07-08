@@ -10,6 +10,7 @@ import HostJoinPage from "../Screens/HostJoinPage";
 import GamePage from "../Screens/GamePage";
 import Settings from "../Screens/Settings";
 import GameOver from "../Screens/GameOver";
+import Help from "../Screens/Help";
 
 const Navigation = () => {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
@@ -53,6 +54,11 @@ const Navigation = () => {
               component={GameOver}
               options={{ orientation: "landscape" }}
             />
+            <Stack.Screen
+              name="Help"
+              component={Help}
+              options={{ orientation: "landscape" }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       );
@@ -83,6 +89,11 @@ const Navigation = () => {
             <Stack.Screen
               name="GameOver"
               component={GameOver}
+              options={{ orientation: "landscape" }}
+            />
+            <Stack.Screen
+              name="Help"
+              component={Help}
               options={{ orientation: "landscape" }}
             />
           </Stack.Navigator>
