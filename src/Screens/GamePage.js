@@ -55,13 +55,26 @@ const GamePage = ({ route, navigation }) => {
   });
 
   //----------------------------------------------------------------//
-  const [cloudGameData, setCloudGameData] = useState({});
+  const [cloudGameData, setCloudGameData] = useState({
+    HostedBy: "",
+    Players: [],
+    RandomNumbers: [],
+    NumberOfTickets: 2,
+    Jaldi5: [false],
+    FirstRow: [false],
+    SecondRow: [false],
+    ThirdRow: [false],
+    FullHousie: [false],
+    IsGameStarted: false,
+  });
 
   useEffect(() => {
     const GameRealTimeData = onSnapshot(
       doc(db, "HousieTambolaGame", GameID),
       (doc) => {
-        setCloudGameData(doc.data());
+        if (doc.metadata.hasPendingWrites) {
+          setCloudGameData(doc.data());
+        }
       }
     );
   }, []);
@@ -75,7 +88,9 @@ const GamePage = ({ route, navigation }) => {
     const GameRealTimeData = onSnapshot(
       doc(db, "HousieTambolaGameChat", GameID),
       (doc) => {
-        setCloudGameChatData(doc.data());
+        if (doc.metadata.hasPendingWrites) {
+          setCloudGameChatData(doc.data());
+        }
       }
     );
   }, []);
@@ -841,9 +856,7 @@ const GamePage = ({ route, navigation }) => {
           justifyContent: "space-between",
         }}
       >
-        {cloudGameData.Players != undefined && (
-          <Players PlayersData={cloudGameData.Players} />
-        )}
+        {<Players PlayersData={cloudGameData.Players} />}
         {cloudGameData.Players != undefined && chatControl === "true" && (
           <GameChat GameID={GameID} />
         )}
@@ -938,29 +951,51 @@ const GamePage = ({ route, navigation }) => {
               <TouchableOpacity
                 onPress={() => ShareGameID()}
                 style={{
-                  flexDirection: "row",
                   backgroundColor: "#fff",
                   justifyContent: "center",
                   alignItems: "center",
                   alignSelf: "center",
-                  marginTop: 2,
+                  padding: 6,
                   borderRadius: 5,
-                  paddingVertical: 8,
-                  paddingHorizontal: 20,
                 }}
               >
+                <View
+                  style={{
+                    flexDirection: "row",
+                    backgroundColor: "#fff",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    alignSelf: "center",
+                    marginTop: 2,
+                    borderRadius: 5,
+                    paddingVertical: 8,
+                    paddingHorizontal: 20,
+                    backgroundColor: "gold",
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "#000",
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      marginHorizontal: 10,
+                      letterSpacing: 1,
+                    }}
+                  >
+                    {`Room Code:-     ${GameID}`}
+                  </Text>
+                  <Ionicons name="share-social-sharp" color="#000" size={18} />
+                </View>
                 <Text
                   style={{
                     color: "#000",
                     textAlign: "center",
                     fontWeight: "bold",
-                    marginHorizontal: 10,
                     letterSpacing: 1,
                   }}
                 >
-                  {`GAME ID:-     ${GameID}`}
+                  Tap Here To Share Room Code
                 </Text>
-                <Ionicons name="share-social-sharp" color="#000" size={18} />
               </TouchableOpacity>
             )}
           {chatControl === "true" && (
@@ -1184,8 +1219,7 @@ const GamePage = ({ route, navigation }) => {
                     )}
                 </View>
               ))}
-            {cloudGameData.RandomNumbers != undefined &&
-              cloudGameData.RandomNumbers.length === 0 &&
+            {cloudGameData.RandomNumbers.length === 0 &&
               cloudGameData.NumberOfTickets > generatedTickets.length && (
                 <View
                   style={{
