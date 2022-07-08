@@ -1293,7 +1293,7 @@ const GamePage = ({ route, navigation }) => {
                   }}
                 >
                   <AdMobBanner
-                    bannerSize="largeBanner"
+                    bannerSize="fullBanner"
                     adUnitID={GoogleAdIDS}
                     servePersonalizedAds={true}
                   />
