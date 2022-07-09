@@ -55,26 +55,13 @@ const GamePage = ({ route, navigation }) => {
   });
 
   //----------------------------------------------------------------//
-  const [cloudGameData, setCloudGameData] = useState({
-    HostedBy: "",
-    Players: [],
-    RandomNumbers: [],
-    NumberOfTickets: 2,
-    Jaldi5: [false],
-    FirstRow: [false],
-    SecondRow: [false],
-    ThirdRow: [false],
-    FullHousie: [false],
-    IsGameStarted: false,
-  });
+  const [cloudGameData, setCloudGameData] = useState({});
 
   useEffect(() => {
     const GameRealTimeData = onSnapshot(
       doc(db, "HousieTambolaGame", GameID),
       (doc) => {
-        if (doc.metadata.hasPendingWrites) {
-          setCloudGameData(doc.data());
-        }
+        setCloudGameData(doc.data());
       }
     );
   }, []);
@@ -88,9 +75,7 @@ const GamePage = ({ route, navigation }) => {
     const GameRealTimeData = onSnapshot(
       doc(db, "HousieTambolaGameChat", GameID),
       (doc) => {
-        if (doc.metadata.hasPendingWrites) {
-          setCloudGameChatData(doc.data());
-        }
+        setCloudGameChatData(doc.data());
       }
     );
   }, []);
@@ -856,7 +841,9 @@ const GamePage = ({ route, navigation }) => {
           justifyContent: "space-between",
         }}
       >
-        {<Players PlayersData={cloudGameData.Players} />}
+        {cloudGameData.RandomNumbers != undefined && (
+          <Players PlayersData={cloudGameData.Players} />
+        )}
         {cloudGameData.Players != undefined && chatControl === "true" && (
           <GameChat GameID={GameID} />
         )}
@@ -1236,7 +1223,8 @@ const GamePage = ({ route, navigation }) => {
                     )}
                 </View>
               ))}
-            {cloudGameData.RandomNumbers.length === 0 &&
+            {cloudGameData.RandomNumbers != undefined &&
+              cloudGameData.RandomNumbers.length === 0 &&
               cloudGameData.NumberOfTickets > generatedTickets.length && (
                 <View
                   style={{

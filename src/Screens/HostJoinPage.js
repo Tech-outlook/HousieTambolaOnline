@@ -70,7 +70,7 @@ const HostJoin = ({ navigation }) => {
       const GameChat = await setDoc(
         doc(db, "HousieTambolaGameChat", CustomGameID),
         {
-          GameChat: [],
+          GameChat: [`Online Housie, Hey There..!`],
         }
       ).then(() => {
         navigation.navigate("GamePage", {
